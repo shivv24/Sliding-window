@@ -1,0 +1,11 @@
+class Solution:
+    def longestNiceSubstring(self, s: str) -> str:
+        def is_nice(sub):
+            return all(ch.lower() in sub and ch.upper() in sub for ch in sub)
+
+        longest = ""
+        for i in range(len(s)):
+            for j in range(i + 1, len(s) + 1):
+                if is_nice(s[i:j]) and len(s[i:j]) > len(longest):
+                    longest = s[i:j]
+        return longest
